@@ -1,13 +1,40 @@
 # California Housing Assignment 3
 
-Dataset: https://www.kaggle.com/datasets/camnugent/california-housing-prices
+**Eman Fatima – FA24-BSE-131** · Machine Learning Fundamentals (AIC354)
 
-1. Download `housing.csv` from Kaggle and place it alongside the notebook.
-2. Upload the notebook to Google Colab and Run all; upload `housing.csv` when prompted.
-3. Download `housing_model.joblib`, `comparison_results.csv`, and `fold_results.csv` from Colab.
-4. Upload `streamlit_app.py`, `requirements.txt`, and `housing_model.joblib` to a public GitHub repository.
-5. Deploy using Streamlit Community Cloud, main file `streamlit_app.py`.
-6. Paste the working app URL at the top of the notebook and save its executed version.
-7. Submit notebook, original `housing.csv`, trained model and link.
+**Live app:** https://californiahousingml.streamlit.app/
 
-Results are intentionally not fabricated; execute in Colab to produce real results.
+Dataset: https://www.kaggle.com/datasets/camnugent/california-housing-prices (all 20,640 districts)
+
+Five regression algorithms (Ridge, Lasso, Elastic Net, Bayesian Ridge, Extra Trees) are compared with 10-fold cross-validation using RMSE.
+
+| Rank | Algorithm | Mean RMSE (USD) |
+|---|---|---|
+| 1 | Extra Trees | 52,295 |
+| 2 | Bayesian Ridge | 68,907 |
+| 3 | Ridge | 68,916 |
+| 4 | Lasso | 68,943 |
+| 5 | Elastic Net | 69,564 |
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `california_housing_10fold.ipynb` | Notebook (data, 10-fold CV, timing, model training, prediction) |
+| `housing.csv` | Original Kaggle dataset |
+| `housing_model.joblib` | Trained Extra Trees pipeline (scikit-learn 1.6.1, compressed) |
+| `comparison_results.csv`, `fold_results.csv`, `timings_CPU.csv` | Cross-validation results and execution times |
+| `streamlit_app.py`, `requirements.txt` | Streamlit web app |
+
+## Run on Google Colab
+
+1. Upload the notebook to Google Colab and **Run all**; upload `housing.csv` when prompted.
+2. Run once on a **CPU** runtime and once on a **T4 GPU** runtime to record execution times (`timings_CPU.csv`, `timings_GPU.csv`).
+
+## Deploy on Streamlit Community Cloud
+
+1. Keep `streamlit_app.py`, `requirements.txt` and `housing_model.joblib` in a public GitHub repository.
+2. On https://share.streamlit.io: **Create app**, main file `streamlit_app.py`, Python 3.12.
+3. Paste the app URL at the top of the notebook and of this README.
+
+Predictions describe 1990 district medians and are for educational use only.
